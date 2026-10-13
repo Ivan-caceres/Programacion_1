@@ -1,9 +1,10 @@
 from validaciones import *
 from funciones_auxiliares import *
+from funciones_de_listas import *
 
 def opciones(primera_opcion:int, ultima_opcion:int) -> int:
     opcion_elegida = input("Elija una opcion: ")
-    if es_numero(opcion_elegida):
+    if es_cadena_numerica(opcion_elegida):
         opcion = int(opcion_elegida)
 
         while opcion < primera_opcion or opcion > ultima_opcion:
@@ -11,63 +12,92 @@ def opciones(primera_opcion:int, ultima_opcion:int) -> int:
             opciones(primera_opcion, ultima_opcion)
         return opcion
 
-def pedir_str(mensaje:str, num_o_alfa:str):
-    dato = input(mensaje)
-    if num_o_alfa == "NUM" and es_cadena_numerica(dato):
-        return dato
-    elif num_o_alfa == "ALFA" and es_cadena_alfa(dato):
-        return dato
-    else:
-        print("Error!, dato invalido.")
-        pedir_str(mensaje, num_o_alfa)
-
-
-
-def realizar_carga():
-
-    legajos = []
-    nombres = []
-    generos = []
-    notas_primer_parcial = []
-    notas_segundo_parcial = []
-
+def realizar_carga(legajos:list, nombres:list, generos:list,
+                    notas_primer_parcial:list, notas_segundo_parcial:list):
+    """
+    """
     print("Ingrese los datos del estudiante.")
     
-    legajo_ingresar = pedir_str("Ingrese el numero de legajo: ", "NUM")
-    agregar_a_lista(legajos, legajo_ingresar)
+    legajo_ingresado = ingresar_num("Ingrese el numero de legajo: ")
+    agregar_a_lista(legajos, legajo_ingresado)
 
-    nombre_ingresar = pedir_str("Ingrese el nombre del estudiante: ", "ALFA")
-    agregar_a_lista(nombres, nombre_ingresar)
+    nombre_ingresado = ingresar_cadena(
+        "Ingrese el nombre del estudiante: ")
+    agregar_a_lista(nombres, nombre_ingresado)
 
-    generos_ingresar = pedir_str("Ingrese el genero del estudiante [F/M/X]: ", "ALFA")
-    while validar_genero(generos_ingresar):
-        print("Error! opcion invalida.")
-        generos_ingresar = pedir_str("Ingrese el genero del estudiante [F/M/X]: ", "ALFA")
-    agregar_a_lista(generos, generos_ingresar)
+    genero_ingresado = ingresar_genero(
+        "Ingrese el genero del estudiante [F|M|X]: ")
+    agregar_a_lista(generos, genero_ingresado)
 
-    notas_primer_parcial_ingresar = pedir_str("Ingrese la nota del primer parcial: ", "NUM")
-    while validar_nota(notas_primer_parcial_ingresar):
-        print("Error! nota invalida.")
-        notas_primer_parcial_ingresar = pedir_str("Ingrese la nota del primer parcial: ", "NUM")
-    agregar_a_lista(notas_primer_parcial, notas_primer_parcial_ingresar)
+    nota_primer_parcial_ingresado = ingresar_notas(
+        "Ingrese la nota del primer parcial: ")
+    agregar_a_lista(notas_primer_parcial, nota_primer_parcial_ingresado)
 
-    notas_segundo_parcial_ingresar = pedir_str("Ingrese la nota del segundo parcial: ", "NUM")
-    while validar_nota(notas_segundo_parcial_ingresar):
-            print("Error! nota invalida.")
-            notas_segundo_parcial_ingresar = pedir_str("Ingrese la nota del primer parcial: ", "NUM")
-    agregar_a_lista(notas_segundo_parcial, notas_segundo_parcial_ingresar)
+    nota_segundo_parcial_ingresado = ingresar_notas(
+        "Ingrese la nota del segundo parcial: ")
+    agregar_a_lista(notas_segundo_parcial, nota_segundo_parcial_ingresado)
+
+    return legajos, nombres, generos, notas_primer_parcial, notas_segundo_parcial
     
-def mostrar_datos():
-    pass
+def mostrar_datos(
+        legajos:list, nombres:list, generos:list, 
+        notas_primer_parcial:list, notas_segundo_parcial:list, promedios =None):
+    """
+    """
+    if promedios == None:
+        print("#"*96)
+        print("\t\t\t\t\tLISTADO DE ESTUDIANTES")
+        print("#"*96)
+        print("Nro Legajo\tNombre del estudiante\t\tGenero\tNota 1er parcial\t"
+        "Nota 2do parcial")
+        for i in range(len(legajos)):
+            mostrar_estudiante(legajos, nombres, generos, notas_primer_parcial,
+                        notas_segundo_parcial, i)
+        print("#"*96)
+    else:
+        print("#"*96)
+        print("\t\t\t\t\tLISTADO DE ESTUDIANTES")
+        print("#"*96)
+        print("Nro Legajo\tNombre del estudiante\t\tGenero\tNota 1er parcial\t"
+        "Nota 2do parcial\tPromedios")
+        for i in range(len(legajos)):
+            mostrar_estudiante(legajos, nombres, generos, notas_primer_parcial,
+            notas_segundo_parcial, i, promedios)
+        print("#"*96)
 
-def calcular_promedio():
-    pass
+def calcular_promedio(
+        notas_primer_parcial:list, notas_segundo_parcial:list, promedios:list):
+    """
+    """
+    for i in range(len(notas_primer_parcial)):
+        suma = float(notas_primer_parcial[i]) + float(notas_segundo_parcial[i])
+        promedio =  suma / 2
+        agregar_a_lista(promedios, round(promedio, 2))
+    
+def encontrar_mayor_prom(promedio:list) -> int:
+    """
+    
+    """
+    for i in range(len(promedio)):
+        if i == 0:
+            indice_maximo = i
+            maximo = promedio[i]
+        
+        if promedio[i] > maximo:
+            indice_maximo = i
+            maximo = promedio[i] 
 
-def mostrar_datos_ord(orden:str):
-    pass
+    return indice_maximo
 
-def mostrar_mayor_prom():
-    pass
 
-def buscar_estudiantes_legajo(legajo:str):
-    pass
+def buscar_estudiantes_legajo(legajo:list, numero:str):
+    """
+    """
+    indice_encontrado = None
+    for i in range(len(legajo)):
+        if legajo[i] == numero:
+            indice_encontrado = i
+    if indice_encontrado != None:
+        return indice_encontrado
+    else:
+        print("Legajo no encontrado.")
