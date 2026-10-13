@@ -5,18 +5,18 @@ def menu():
     print("#"*50)
     print("Bienvenido al sistema de gestion de datos.")
     print("#"*50)
-    print(despliegue_opciones)
-    print("#"*50)
+
     
     bandera = True
     hay_datos = False
+    opcion = 0
     
-    while bandera:
+    while opcion != 7:
+        print(despliegue_opciones)
+        print("#"*50)
 
         opcion = opciones(1,7)
-
         if opcion == 1:
-            print("Aca va la opcion 1")
             realizar_carga()
             hay_datos = True
         elif opcion == 7:
