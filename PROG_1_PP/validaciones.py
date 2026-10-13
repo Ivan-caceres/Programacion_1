@@ -58,12 +58,14 @@ def validar_genero(genero:str) -> bool:
     Args: genero(str)
     Retorno: Booleano
     """
+    retorno = False
     if es_alfabetico(genero):
-        match genero:
-            case "F" | "f" | "M" | "m" | "X" | "x":
-                return True
+        match ord(genero):
+            case 70 | 102 | 77 | 109 | 88 | 120: #F, f, M, m, X, x en codigo ascii
+                retorno = True
             case _:
-                return False
+                pass
+    return retorno
 
 def validar_nota(nota:str) -> bool:
     """
