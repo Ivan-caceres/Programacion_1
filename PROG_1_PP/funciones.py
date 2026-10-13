@@ -3,6 +3,13 @@ from funciones_auxiliares import *
 from funciones_de_listas import *
 
 def opciones(primera_opcion:int, ultima_opcion:int) -> int:
+    """
+    Valida la opcion ingresada por el ususario.
+
+    Args: primera_opcion(int), ultima_opcion(int)
+
+    Retorno: Opcion(int)
+    """
     opcion_elegida = input("Elija una opcion: ")
     if es_cadena_numerica(opcion_elegida):
         opcion = int(opcion_elegida)
@@ -15,6 +22,13 @@ def opciones(primera_opcion:int, ultima_opcion:int) -> int:
 def realizar_carga(legajos:list, nombres:list, generos:list,
                     notas_primer_parcial:list, notas_segundo_parcial:list):
     """
+    Realiza la carga de todos los datos del sistema.
+
+    Args: legajos(list), nombres(list), generos(list), 
+    notas_primer_parcial(list), notas_segundo_parcial(list)
+    
+    Retorno: legajos(list), nombres(list), generos(list), 
+    notas_primer_parcial(list), notas_segundo_parcial(list)
     """
     print("Ingrese los datos del estudiante.")
     
@@ -43,6 +57,11 @@ def mostrar_datos(
         legajos:list, nombres:list, generos:list, 
         notas_primer_parcial:list, notas_segundo_parcial:list, promedios =None):
     """
+    Muestra los datos de los estudiantes en forma de informe con su titulo y 
+    registro.
+
+    Args: legajos(list), nombres(list), generos(list), 
+    notas_primer_parcial(list), notas_segundo_parcial(list)
     """
     if promedios == None:
         print("#"*96)
@@ -68,6 +87,11 @@ def mostrar_datos(
 def calcular_promedio(
         notas_primer_parcial:list, notas_segundo_parcial:list, promedios:list):
     """
+    Calcula el promedio de las notas del estudiante y las agrega a su respectiva 
+    lista.
+
+    Args: notas_primer_parcial(list), notas_segundo_parcial(list), 
+    promedios(list)
     """
     for i in range(len(notas_primer_parcial)):
         suma = float(notas_primer_parcial[i]) + float(notas_segundo_parcial[i])
@@ -76,7 +100,11 @@ def calcular_promedio(
     
 def encontrar_mayor_prom(promedio:list) -> int:
     """
+    Encuentra el indice del mayor promedio de la lista.
+
+    Args: Promedio(list)
     
+    Retorno: indice_maximo(int)
     """
     for i in range(len(promedio)):
         if i == 0:
@@ -92,6 +120,9 @@ def encontrar_mayor_prom(promedio:list) -> int:
 
 def buscar_estudiantes_legajo(legajo:list, numero:str):
     """
+    Encuentra el indice del legajo ingresado.
+    
+    Args: legajo(list), numero(str)
     """
     indice_encontrado = None
     for i in range(len(legajo)):
