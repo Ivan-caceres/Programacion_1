@@ -20,7 +20,8 @@ def pedir_str(mensaje:str, num_o_alfa:str):
     else:
         print("Error!, dato invalido.")
         pedir_str(mensaje, num_o_alfa)
-        
+
+
 
 def realizar_carga():
 
@@ -29,8 +30,10 @@ def realizar_carga():
     generos = []
     notas_primer_parcial = []
     notas_segundo_parcial = []
+
+    print("Ingrese los datos del estudiante.")
     
-    legajo_ingresar = pedir_str("Ingese el numero de legajo: ", "NUM")
+    legajo_ingresar = pedir_str("Ingrese el numero de legajo: ", "NUM")
     agregar_a_lista(legajos, legajo_ingresar)
 
     nombre_ingresar = pedir_str("Ingrese el nombre del estudiante: ", "ALFA")
