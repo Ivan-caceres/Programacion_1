@@ -1,3 +1,4 @@
+
 def es_numero(caracter:str) -> bool:
     """
     Valida si el caracter ingresado es numerico.
@@ -46,11 +47,13 @@ def es_cadena_alfa(cadena:str)-> bool:
     retorno = True
     for i in cadena:
         valor = es_alfabetico(i)
-        if (valor == False):
+        if (valor == False) and i != " ":
             retorno = False
             break
     
     return retorno
+
+
 
 def validar_genero(genero:str) -> bool:
     """
@@ -67,31 +70,17 @@ def validar_genero(genero:str) -> bool:
                 pass
     return retorno
 
+
 def validar_nota(nota:str) -> bool:
     """
     Valida que la nota ingresada se encuentre entre el 0 y el 10.
     Args: nota(str)
     Retorno: Booleano
     """
-    if nota >= 0 and nota <= 10:
-        return True
-    else :
-        return False
-    
-def es_num_entero(cadena:str) -> bool:
-    """
-    Valida si la cadena ingresada es un numero entero.
-    Args: cadena(str)
-    Retorno : Booleano
-    """
-    retorno = True
-    for i in cadena:
-        valor = es_numero(i)
-        if (valor == False) and (i != "-"):
-            retorno = False
-            break
-
+    retorno = False
+    if es_cadena_numerica(nota):
+        if int(nota) >= 0 and int(nota) <= 10:
+            retorno = True
     return retorno
-
 
 
