@@ -4,7 +4,6 @@ from mensajes import *
 def menu():
     print("#"*50)
     print("Bienvenido al sistema de gestion de datos.")
-    print("#"*50)
 
     bandera = True
     hay_datos = False
