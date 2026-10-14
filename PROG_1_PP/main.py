@@ -8,7 +8,6 @@ def menu():
     print("#"*50)
 
     bandera = True
-    hay_datos = True
 
     (legajos, nombres, generos, notas_primer_parcial, 
     notas_segundo_parcial, promedios) = listas_hardcodeadas()
@@ -26,11 +25,11 @@ def menu():
             notas_primer_parcial, notas_segundo_parcial) = realizar_carga(
             legajos, nombres, generos, notas_primer_parcial, 
             notas_segundo_parcial)
-            hay_datos = True
+
         elif opcion == 7:
             print("Saliendo...")
             bandera = False
-        elif hay_datos:
+        elif legajos:
             match opcion:
                 case 2: 
                     mostrar_datos(legajos, nombres, generos, 
@@ -38,7 +37,7 @@ def menu():
                 case 3:
                     calcular_promedio(notas_primer_parcial, 
                                     notas_segundo_parcial, promedios)
-                    print("Promedio calculado, consulte opcion 5")
+                    print("Promedio calculado, consulte opcion 4 o 5.")
                     calculo_hecho = True
                 case 4:
                     if calculo_hecho:
@@ -72,7 +71,7 @@ def menu():
                     else:
                         print("Error! Debe calcular promedios en opcion 3.")
                 case 6:
-                    legajo = ingresar_num("Ingrese el numero de legajo: ")
+                    legajo = ingresar_num("Ingrese el numero de legajo: \n")
 
                     indice = buscar_estudiantes_legajo(legajos, legajo)
                     if indice != None:
