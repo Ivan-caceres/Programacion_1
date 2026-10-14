@@ -71,7 +71,7 @@ def ingresar_genero(mensaje:str) -> str:
     while not(validar_genero(genero_ingresado)):
         print("Error! dato invalido.")
         genero_ingresado = input(mensaje)
-        genero_mayus = caracter_mayuscula(genero_ingresado)
+    genero_mayus = caracter_mayuscula(genero_ingresado)
 
     return genero_mayus
 
@@ -102,7 +102,7 @@ def ingresar_orden(mensaje:str) -> str:
     while cadena_validada != "ASC" and cadena_validada != "DES" and cadena_validada != "asc" and cadena_validada != "des":
         print("Error! Dato invalido")
         cadena_validada = ingresar_cadena(mensaje)
-        cadena_mayus = cadena_mayuscula(cadena_validada)
+    cadena_mayus = cadena_mayuscula(cadena_validada)
     
     return cadena_mayus
 
