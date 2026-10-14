@@ -29,6 +29,31 @@ def cadena_mayuscula(cadena:str) -> str:
         cadena_mayus = cadena_mayus + caracter_mayus
     return cadena_mayus
 
+def primera_mayus(cadena:str) -> str:
+    """
+    Convierte la primer letra de una cadena y la letra inmediata a un espacio
+    a mayuscula.
+    
+    Args: cadena(str)
+
+    Retorno: cadena_primera_mayus(str)
+    """
+    cadena_primera_mayus = ""
+    convertir_mayus = True
+    for i in cadena:
+        if i == " ":
+            caracter_procesado = i
+            convertir_mayus = True
+        else:
+            if convertir_mayus:
+                caracter_procesado = caracter_mayuscula(i)
+                convertir_mayus = False
+            else:
+                caracter_procesado = i
+        cadena_primera_mayus = cadena_primera_mayus + caracter_procesado
+
+    return cadena_primera_mayus
+
 def ingresar_num(mensaje:str) -> str:
     """
     Valida el ingreso de una cadena numerica y la retorna.
