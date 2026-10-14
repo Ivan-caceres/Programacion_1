@@ -1,5 +1,6 @@
 from funciones import *
 from mensajes import *
+from listas import *
 
 def menu():
     print("#"*50)
@@ -7,10 +8,12 @@ def menu():
     print("#"*50)
 
     bandera = True
-    hay_datos = False
+    hay_datos = True
 
     (legajos, nombres, generos, notas_primer_parcial, 
-    notas_segundo_parcial, promedios) = inicializar_listas()
+    notas_segundo_parcial, promedios) = listas_hardcodeadas()
+    #(legajos, nombres, generos, notas_primer_parcial, 
+    #    notas_segundo_parcial, promedios) = inicializar_listas()
     
     while bandera:
         print("#"*50)
