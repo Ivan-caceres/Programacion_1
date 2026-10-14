@@ -37,6 +37,7 @@ def realizar_carga(legajos:list, nombres:list, generos:list,
 
     nombre_ingresado = ingresar_cadena(
         "Ingrese el nombre del estudiante: ")
+    nombre_ingresado = primera_mayus(nombre_ingresado)
     agregar_a_lista(nombres, nombre_ingresado)
 
     genero_ingresado = ingresar_genero(
